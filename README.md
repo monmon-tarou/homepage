@@ -4,7 +4,7 @@
 Python（Flask）をベースに、Linux（Rocky Linux 8）環境上で動作する Web アプリケーションとして開発
 
 ## 開発環境
-- **OS**: betnto/rocky Linux-8（Vagrant Box）
+- **OS**: bento/rocky Linux-8（Vagrant Box）
 - **Virtualization**: VirtualBox "202508.03.0"
 - **Language**: Python 3.14
 - **Framework**: Flask
@@ -18,7 +18,7 @@ Python（Flask）をベースに、Linux（Rocky Linux 8）環境上で動作す
 - pythonのインストール
 - GitHubの登録、homepageリポジトリの作成
 - `C:\Users\h-yos`に`dev`フォルダを作成
-- homepageリポジトリをforkで`dev`に**clone**
+- homepageリポジトリをforkで`dev`に`clone`
 
 ## 実践
 1. コマンドプロンプトで homepage ディレクトリに移動する。
@@ -67,6 +67,14 @@ Python（Flask）をベースに、Linux（Rocky Linux 8）環境上で動作す
     ```console
     cd /vagrant_data
     ```
-    ```
+    ```console
     ll
+    ```
+8. `requirements.txt` を作成する。
+    ```text
+    flask
+    ```
+9. ライブラリを一括インストールする。今回はFlaskのみ。
+    ```console
+    pip install -r requirements.txt
     ```
