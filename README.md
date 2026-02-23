@@ -6,7 +6,7 @@ Python（Flask）をベースに、Linux（Rocky Linux 8）環境上で動作す
 ## 開発環境
 - **OS**: bento/rocky Linux-8（Vagrant Box）
 - **Virtualization**: VirtualBox "202508.03.0"
-- **Language**: Python 3.14
+- **Language**: Python
 - **Framework**: Flask
 - **Package Manager**: pip
 
@@ -70,11 +70,15 @@ Python（Flask）をベースに、Linux（Rocky Linux 8）環境上で動作す
     ```console
     ll
     ```
-8. `requirements.txt` を作成する。
+8. pythonをインストールする。pipも同時にインストールされる。
+    ```console
+    sudo dnf install -y python3
+    ```
+9. `requirements.txt` を作成する。
     ```text
     flask
     ```
-9. ライブラリを一括インストールする。今回はFlaskのみ。
+10. ライブラリを一括インストールする。今回はFlaskのみ。
     ```console
     pip install -r requirements.txt
     ```
