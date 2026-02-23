@@ -24,7 +24,7 @@ Python（Flask）をベースに、Linux（Rocky Linux 8）環境上で動作す
 1. コマンドプロンプトで homepage ディレクトリに移動する。
 2. VM の初期化。vagrant で扱うための VM の設定情報を記載する `Vagrantfile` が作成される。
     ```console
-    vagrant init bento/centos-8
+    vagrant init bento/rockylinux-8
     ```
 3. Vagrantfile を編集する。
     ```ruby
@@ -37,8 +37,7 @@ Python（Flask）をベースに、Linux（Rocky Linux 8）環境上で動作す
 
       config.vm.hostname = "homepage"
 
-      config.vm.network "private_network", ip: "192.168.56.30"
-      config.vm.network "forwarded_port", guest: 5000, host: 5000
+      config.vm.network "private_network", ip: "192.168.33.10"
 
       # 同期フォルダの設定
       config.vm.synced_folder "C:/Users/h-yos/dev/homepage", "/vagrant_data"
@@ -80,5 +79,34 @@ Python（Flask）をベースに、Linux（Rocky Linux 8）環境上で動作す
     ```
 10. ライブラリを一括インストールする。今回はFlaskのみ。
     ```console
-    pip install -r requirements.txt
+    pip3 install -r requirements.txt
     ```
+11. Windows側のVScodeで編集するため、Windows側にも環境を入れる。
+    ```console
+    python -m pip install -r requirements.txt
+    ```
+12. firewalldを無効化する
+    ```console
+    sudo systemctl disable firewalld
+    ```
+    ```console
+    vagrant reload
+    ```
+13. `app.py`を作成
+    ```python
+    from flask import Flask
+
+    app = Flask(__name__)
+
+    @app.route("/")
+    def index():
+        return "ホームページへようこそ"
+
+    if __name__ == "__main__":
+        app.run(host="192.168.33.10", port=5000)
+    ```
+14. `app.py`を実行する。
+    ```console
+    python3 app.py
+    ```
+15. http://192.168.33.10:5000/ にアクセスする。
